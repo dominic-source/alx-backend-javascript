@@ -8,10 +8,6 @@ export default class Car {
     if (typeof color === 'string') this._color = color;
   }
 
-  static get [Symbol.species]() {
-    return this;
-  }
-
   cloneCar() {
     return new this.constructor();
   }

@@ -40,3 +40,19 @@ function createEmployee(salary: string | number): Director | Teacher {
     }
     return new Director();
 }
+
+// A type predicate
+function isDirector(employee: any): employee is Director {
+    return employee instanceof Director
+}
+
+function executeWork(employee: Director | Teacher) {
+    if (isDirector(employee)) return employee.workDirectorTasks()
+    else return employee.workTeacherTasks()
+}
+
+type Subject = 'Math' | 'History';
+function teachClass(todayClass: Subject): string {
+    if (todayClass === 'Math') return 'Teaching Math';
+    else return 'Teaching History'
+}

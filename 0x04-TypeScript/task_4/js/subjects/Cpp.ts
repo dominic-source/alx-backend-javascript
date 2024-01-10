@@ -5,9 +5,6 @@ namespace Subjects {
     };
 
     export class Cpp extends Subject {
-        constructor() {
-            super();
-        }
         getRequirements() {
             return 'Here is the list of requirements for Cpp'
         }
@@ -16,5 +13,4 @@ namespace Subjects {
             return `Available Teacher: ${this.teacher.firstName}`
         }
     }
-
 }

@@ -6,7 +6,6 @@ module.exports = async function countStudents(path) {
     const stream = fs.createReadStream(path, 'utf-8');
     const rl = readline.createInterface({
       input: stream,
-    //   crlfDelay: Infinity,
     });
 
     let count = -1;

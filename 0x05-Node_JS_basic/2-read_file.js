@@ -11,7 +11,7 @@ module.exports = function countStudents(path) {
 
   const rl = readline.createInterface({
     input: stream,
-    crlfDelay: Infinity,
+    // crlfDelay: Infinity,
   });
 
   let count = -1;

@@ -2,12 +2,13 @@ const fs = require('fs');
 const readline = require('readline');
 
 module.exports = async function countStudents(path) {
-  const promise = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     const stream = fs.createReadStream(path, 'utf-8');
     const rl = readline.createInterface({
       input: stream,
-      crlfDelay: Infinity,
+    //   crlfDelay: Infinity,
     });
+
     let count = -1;
     const fields = {};
     // Readline
@@ -39,5 +40,4 @@ module.exports = async function countStudents(path) {
       resolve();
     });
   });
-  return promise;
 };

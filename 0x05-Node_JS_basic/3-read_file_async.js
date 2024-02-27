@@ -1,7 +1,7 @@
 const fs = require('fs');
 const readline = require('readline');
 
-module.exports = async function countStudents(path) {
+async function countStudents(path) {
   return new Promise((resolve, reject) => {
     const stream = fs.createReadStream(path, 'utf-8');
     const rl = readline.createInterface({
@@ -11,7 +11,7 @@ module.exports = async function countStudents(path) {
     let count = -1;
     const fields = {};
     // Readline
-    rl.on('line', (line) => {
+    rl.on('line', async (line) => {
       const struct = line.toString().trim();
       if (struct !== '') {
         count += 1;
@@ -25,11 +25,11 @@ module.exports = async function countStudents(path) {
       }
     });
 
-    rl.on('error', () => {
+    rl.on('error', async () => {
       reject(new Error('Cannot load the database'));
     });
 
-    rl.on('close', () => {
+    rl.on('close', async () => {
       delete fields.field;
       console.log('Number of students:', count);
       const keys = Object.keys(fields);
@@ -40,3 +40,4 @@ module.exports = async function countStudents(path) {
     });
   });
 };
+module.exports = countStudents;

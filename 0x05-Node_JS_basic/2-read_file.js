@@ -35,7 +35,7 @@ module.exports = function countStudents(path) {
 
     rl.on('close', () => {
       delete fields.field;
-      console.log('Number of students: ', count);
+      console.log('Number of students:', count);
       const keys = Object.keys(fields);
       for (const dat of keys) {
         console.log(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}`);

@@ -2,7 +2,7 @@ const fs = require('fs');
 const readline = require('readline');
 const { Readable } = require('stream');
 
-function countStudents(path) {
+module.exports = function countStudents(path) {
   try {
     const data = fs.readFileSync(path, 'utf-8');
 
@@ -47,4 +47,3 @@ function countStudents(path) {
     throw new Error('Cannot load the database');
   }
 };
-module.exports = countStudents;

@@ -1,7 +1,8 @@
 const fs = require('fs');
 const readline = require('readline');
+const process = require('process');
 
-async function countStudents(path) {
+module.exports = async function countStudents(path) {
   return new Promise((resolve, reject) => {
     const stream = fs.createReadStream(path, 'utf-8');
     const rl = readline.createInterface({
@@ -31,13 +32,12 @@ async function countStudents(path) {
 
     rl.on('close', async () => {
       delete fields.field;
-      console.log('Number of students:', count);
+      process.stdout.write(`Number of students: ${count}\n`);
       const keys = Object.keys(fields);
       for (const dat of keys) {
-        console.log(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}`);
+        process.stdout.write(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}\n`);
       }
       resolve();
     });
   });
 };
-module.exports = countStudents;

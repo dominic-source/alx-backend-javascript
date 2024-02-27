@@ -7,7 +7,7 @@ process.stdin.on('data', (input) => {
   const INPUT = input.toString().trim();
   process.stdout.write(`Your name is: ${INPUT}\n`);
   if (!process.stdin.isTTY) {
-    process.stdout.write('This important software is now closing\n');
+    process.stderr.write('This important software is now closing\n');
   }
   process.exit();
 });

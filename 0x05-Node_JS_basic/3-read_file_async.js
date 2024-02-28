@@ -7,7 +7,7 @@ module.exports = async function countStudents(path) {
     try {
       stream = fs.createReadStream(path, 'utf-8');
     } catch (err) {
-      reject(new Error('Error: Cannot load the database'));
+      throw new Error('Cannot load the database');
     }
     const rl = readline.createInterface({
       input: stream,
@@ -28,10 +28,6 @@ module.exports = async function countStudents(path) {
           fields[info[3]].push(info[0]);
         }
       }
-    });
-
-    rl.on('error', async () => {
-      reject(new Error('Error: Cannot load the database'));
     });
 
     rl.on('close', async () => {

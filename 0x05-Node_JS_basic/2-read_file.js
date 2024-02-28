@@ -1,31 +1,18 @@
 const fs = require('fs');
-const readline = require('readline');
-const { Readable } = require('stream');
 
-module.exports = function countStudents(path) {
+function countStudents(path) {
   let data = null;
   try {
     data = fs.readFileSync(path, 'utf-8');
   } catch (err) {
     throw new Error('Cannot load the database');
   }
-  // Create a stream to read from a data in memory
-  const stream = new Readable();
-  stream.push(data);
-  stream.push(null);
 
-  const read = readline.createInterface({
-    input: stream,
-    crlfDelay: Infinity,
-  });
+  const results = data.split('\r\n');
 
-  let count = -1;
   const fields = {};
-  // Readline
-  read.on('line', (line) => {
-    const struct = line.toString().trim();
+  for (const struct of results) {
     if (struct !== '') {
-      count += 1;
       const info = struct.split(',');
       try {
         fields[info[3]].push(info[0]);
@@ -34,14 +21,12 @@ module.exports = function countStudents(path) {
         fields[info[3]].push(info[0]);
       }
     }
-  });
-
-  read.on('close', () => {
-    delete fields.field;
-    process.stdout.write(`Number of students: ${count}\n`);
-    const keys = Object.keys(fields);
-    for (const dat of keys) {
-      process.stdout.write(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}\n`);
-    }
-  });
-};
+  }
+  delete fields.field;
+  console.log(`Number of students: ${results.length - 1}`);
+  const keys = Object.keys(fields);
+  for (const dat of keys) {
+    console.log(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}`);
+  }
+}
+module.exports = countStudents;

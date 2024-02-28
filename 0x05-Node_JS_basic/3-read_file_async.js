@@ -28,7 +28,7 @@ module.exports = async function countStudents(path) {
 
     rl.on('error', async () => {
       reject();
-      throw new Error('Cannot load the database');
+      throw new Error('Error: Cannot load the database');
     });
 
     rl.on('close', async () => {

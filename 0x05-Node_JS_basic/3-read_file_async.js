@@ -7,7 +7,7 @@ module.exports = async function countStudents(path) {
     try {
       stream = fs.createReadStream(path, 'utf-8');
     } catch (err) {
-      reject();
+      reject(new Error('Cannot load the database'));
       throw new Error('Cannot load the database');
     }
     const rl = readline.createInterface({
@@ -33,12 +33,15 @@ module.exports = async function countStudents(path) {
 
     rl.on('close', async () => {
       delete fields.field;
+      let value = '';
       console.log(`Number of students: ${count}`);
+      value += `Number of students: ${count}\n`;
       const keys = Object.keys(fields);
       for (const dat of keys) {
+        value += `Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}\n`;
         console.log(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}`);
       }
-      resolve();
+      resolve(value);
     });
   });
 };

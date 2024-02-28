@@ -39,15 +39,15 @@ module.exports = async function countStudents(path) {
 
     rl.on('close', async () => {
       delete fields.field;
-      let value = '';
+      // let value = '';
       console.log(`Number of students: ${count}`);
-      value += `Number of students: ${count}\n`;
+      // value += `Number of students: ${count}\n`;
       const keys = Object.keys(fields);
       for (const dat of keys) {
-        value += `Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}\n`;
+        // value += `Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}\n`;
         console.log(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}`);
       }
-      resolve(value);
+      resolve();
     });
   });
 };

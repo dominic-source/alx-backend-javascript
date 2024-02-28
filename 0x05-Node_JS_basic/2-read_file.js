@@ -11,7 +11,7 @@ function countStudents(path) {
   const results = data.split('\r\n');
 
   const fields = {};
-  count = -1;
+  let count = -1;
   for (const struct of results) {
     if (struct !== '') {
       count += 1;

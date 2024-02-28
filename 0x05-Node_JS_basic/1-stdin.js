@@ -5,12 +5,7 @@ process.stdout.write(`${text}`);
 
 process.stdin.on('data', (INPUT) => {
   process.stdout.write(`Your name is: ${INPUT}`);
-  if (!process.stdin.isTTY) {
-    // console.log();
-  } else {
-    process.exit();
-  }
 });
-// process.stdin.on('end', () => {
-//   process.stdout.write('This important software is now closing\n');
-// });
+process.stdin.on('end', () => {
+  process.exit()
+});

@@ -11,8 +11,10 @@ function countStudents(path) {
   const results = data.split('\r\n');
 
   const fields = {};
+  count = -1;
   for (const struct of results) {
     if (struct !== '') {
+      count += 1;
       const info = struct.split(',');
       try {
         fields[info[3]].push(info[0]);
@@ -23,7 +25,7 @@ function countStudents(path) {
     }
   }
   delete fields.field;
-  console.log(`Number of students: ${results.length - 1}`);
+  console.log(`Number of students: ${count}`);
   const keys = Object.keys(fields);
   for (const dat of keys) {
     console.log(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}`);

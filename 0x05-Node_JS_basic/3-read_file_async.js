@@ -4,7 +4,13 @@ const readline = require('readline');
 module.exports = async function countStudents(path) {
   return new Promise((resolve, reject) => {
     let stream = null;
-    stream = fs.createReadStream(path, 'utf-8');
+    try {
+      stream = fs.createReadStream(path, 'utf-8');
+    } catch (err) {
+      // reject(new Error('Cannot load the database'));
+      reject();
+      throw new Error('Cannot load the database');
+    }
     const rl = readline.createInterface({
       input: stream,
     });
@@ -27,8 +33,8 @@ module.exports = async function countStudents(path) {
     });
 
     rl.on('error', async () => {
-      reject();
-      throw new Error('Error: Cannot load the database');
+      // reject(new Error('Cannot load the database'));
+      throw new Error('Cannot load the database');
     });
 
     rl.on('close', async () => {

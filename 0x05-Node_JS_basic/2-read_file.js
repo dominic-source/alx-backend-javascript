@@ -11,14 +11,14 @@ module.exports = function countStudents(path) {
     stream.push(data);
     stream.push(null);
 
-    const rl = readline.createInterface({
+    const read = readline.createInterface({
       input: stream,
     });
 
     let count = -1;
     const fields = {};
     // Readline
-    rl.on('line', (line) => {
+    read.on('line', (line) => {
       const struct = line.toString().trim();
       if (struct !== '') {
         count += 1;
@@ -32,15 +32,15 @@ module.exports = function countStudents(path) {
       }
     });
 
-    rl.on('error', () => {
+    read.on('error', () => {
       throw new Error('Cannot load the database');
     });
-    rl.on('close', () => {
+    read.on('close', () => {
       delete fields.field;
-      console.log('Number of students:', count);
+      process.stdout.write(`Number of students: ${count}\n`);
       const keys = Object.keys(fields);
       for (const dat of keys) {
-        console.log(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}`);
+        process.stdout.write(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}\n`);
       }
     });
   } catch (err) {

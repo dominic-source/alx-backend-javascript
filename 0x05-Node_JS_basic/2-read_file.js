@@ -21,8 +21,8 @@ module.exports = function countStudents(path) {
   let count = -1;
   const fields = {};
   // Readline
-  read.on('line', (line) => {
-    const struct = line.toString().trim();
+  read.on('line', (struct) => {
+    // const struct = line.toString().trim();
     if (struct !== '') {
       count += 1;
       const info = struct.split(',');

@@ -41,7 +41,7 @@ module.exports = async function countStudents(path) {
         value += `Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}\n`;
         console.log(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}`);
       }
-      resolve(value);
+      resolve();
     });
   });
 };

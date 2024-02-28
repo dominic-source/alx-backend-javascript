@@ -37,10 +37,10 @@ module.exports = function countStudents(path) {
 
   read.on('close', () => {
     delete fields.field;
-    process.stdout.write(`Number of students: ${count}\n`);
+    process.stdout.write(`Number of students: ${count}`);
     const keys = Object.keys(fields);
     for (const dat of keys) {
-      process.stdout.write(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}\n`);
+      process.stdout.write(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}`);
     }
   });
 };

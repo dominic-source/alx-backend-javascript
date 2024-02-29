@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const sinon = require('sinon');
 const request = require('request');
 
-describe('Integration testing of web application', function() {
+describe('Index page', function() {
 
   it('should have the correct status code', function() {
     request('http://localhost:7865/', (error, response, body) => {
@@ -16,6 +16,15 @@ describe('Integration testing of web application', function() {
     request('http://localhost:7865/', (error, response, body) => {
       if (!error) {
         expect(body).to.equal('Welcome to the payment system');
+      }
+    })
+  });
+
+  
+  it('should have the correct status message', function() {
+    request('http://localhost:7865/', (error, response, body) => {
+      if (!error) {
+        expect(response.statusMessage).to.equal('OK');
       }
     })
   });

@@ -1,7 +1,6 @@
 const assert = require('assert');
 const  calculateNumber = require('./1-calcul.js');
 
-
 describe('calculateNumber', function() {
   describe('# Calculate Sum', function() {
     it('should return the  correct sum when add two positive numbers', function() {
@@ -181,6 +180,15 @@ describe('calculateNumber', function() {
      const val = calculateNumber('DIVIDE', 1e-15, 1e-15);
      assert.strictEqual(val, 'Error');
    });
+  });
+
+  describe("Put a wrong type", function() {
+    it('is not SUM or SUBTRACT or DIVIDE', function (){
+      assert.equal(calculateNumber(5, 5, 2), undefined);
+    });
+    it('is not SUM or SUBTRACT or DIVIDE', function (){
+      assert.equal(calculateNumber('tryme', 5, 2), undefined);
+    });
   });
 });
   

@@ -23,7 +23,12 @@ describe('calculateNumber', function() {
       const val = calculateNumber('SUM', 1.2, 3.5);
       assert.strictEqual(val, 5);
     });
-        
+    
+    it('should return the correct sum when adding two integer numbers', function() {
+      const val = calculateNumber('SUM', -2, -3);
+      assert.strictEqual(val, -5);
+    });
+  
     it('should return the correct sum when adding two integer numbers', function() {
       const val = calculateNumber('SUM', 2, 3);
       assert.strictEqual(val, 5);
@@ -65,7 +70,12 @@ describe('calculateNumber', function() {
       const val = calculateNumber('SUBTRACT', 1.2, 3.5);
       assert.strictEqual(val, 3);
     });
-        
+
+    it('should return the correct SUBTRACT when subtracting two integer numbers', function() {
+      const val = calculateNumber('SUBTRACT', -2, -3);
+      assert.strictEqual(val, -1);
+    });
+ 
     it('should return the correct SUBTRACT when subtracting two integer numbers', function() {
       const val = calculateNumber('SUBTRACT', 2, 3);
       assert.strictEqual(val, 1);

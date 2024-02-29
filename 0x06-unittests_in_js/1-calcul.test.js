@@ -117,7 +117,12 @@ describe('calculateNumber', function() {
       const val = calculateNumber('DIVIDE', 0, 0);
       assert.strictEqual(val, 'Error');
     });
-        
+
+    it('should return the correct DIVISION when dividing two integer numbers', function() {
+        const val = calculateNumber('DIVIDE', 0, 45);
+        assert.strictEqual(val, 0);
+    });
+    
     it('should return the correct DIVISION when dividing two infinit numbers', function() {
       const val = calculateNumber('DIVIDE', Infinity, Infinity);
       assert.strictEqual(val, NaN);

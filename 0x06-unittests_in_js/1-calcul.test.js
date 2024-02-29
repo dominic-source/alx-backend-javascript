@@ -75,7 +75,11 @@ describe('calculateNumber', function() {
       const val = calculateNumber('SUBTRACT', 0, 0);
       assert.strictEqual(val, 0);
     });
-        
+    
+    it('should return the correct SUBTRACT when subtracting two integer numbers', function() {
+        const val = calculateNumber('SUBTRACT', 0, 50);
+        assert.strictEqual(val, 50);
+    });
     it('should return the correct SUBTRACT when subtracting two infinit numbers', function() {
       const val = calculateNumber('SUBTRACT', Infinity, Infinity);
       assert.strictEqual(val, NaN);
@@ -132,10 +136,20 @@ describe('calculateNumber', function() {
       const val = calculateNumber('DIVIDE', Infinity, Infinity);
       assert.strictEqual(val, NaN);
     });
-        
+    
+    it('should return the correct DIVISION when dividing two infinit numbers', function() {
+        const val = calculateNumber('DIVIDE', Infinity, -Infinity);
+        assert.strictEqual(val, NaN);
+    });
+
     it('should return the correct DIVISION when dividing two large decimal numbers', function() {
       const val = calculateNumber('DIVIDE', 12345.54, 5423.21);
       assert.strictEqual(val, 12346/5423);
+    });
+
+    it('should return the correct DIVISION when dividing two large decimal numbers', function() {
+        const val = calculateNumber('DIVIDE', 12345.54, -5423.21);
+        assert.strictEqual(val, -12346/5423);
     });
   });
 });

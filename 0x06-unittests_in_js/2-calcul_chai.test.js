@@ -86,7 +86,7 @@ describe('calculateNumber', async function() {
         
     it('should return the correct DIVISION when dividing a positive and a negative decimal numbers', function() {
       const val = calculateNumber('DIVIDE', 5.1, -2.1);
-      expect(val).to.equal(8);
+      expect(val).to.equal(-5/2);
     });
         
     it('should return the correct DIVISION when dividing two decimal numbers', function() {
@@ -126,12 +126,12 @@ describe('calculateNumber', async function() {
     
     it('should return the correct DIVISION when dividing two infinit numbers', function() {
       const val = calculateNumber('DIVIDE', Infinity, Infinity);
-      expect(val).to.equal(NaN);
+      expect(val).to.be.NaN;
     });
     
     it('should return the correct DIVISION when dividing two infinit numbers', function() {
         const val = calculateNumber('DIVIDE', Infinity, -Infinity);
-        expect(val).to.equal(NaN);
+        expect(val).to.be.NaN;
     });
 
     it('should return the correct DIVISION when dividing two large decimal numbers', function() {

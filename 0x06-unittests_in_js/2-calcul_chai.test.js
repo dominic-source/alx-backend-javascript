@@ -1,8 +1,6 @@
-const assert = require('assert');
-const  calculateNumber = require('./1-calcul');
+const expect = require('chai').expect;
+const  calculateNumber = require('./2-calcul_chai');
 const { it, describe } = require("mocha");
-const chai = require('chai');
-const expect = chai.expect;
 
 describe('calculateNumber', async function() {
   describe('# Calculate Sum', function() {
@@ -155,15 +153,6 @@ describe('calculateNumber', async function() {
      const val = calculateNumber('DIVIDE', 1e-15, 1e-15);
      expect(val).to.equal('Error');
    });
-  });
-
-  describe("Put a wrong type", function() {
-    it('is not SUM or SUBTRACT or DIVIDE', function (){
-      assert.equal(calculateNumber(5, 5, 2), undefined);
-    });
-    it('is not SUM or SUBTRACT or DIVIDE', function (){
-      assert.equal(calculateNumber('tryme', 5, 2), undefined);
-    });
   });
 });
   

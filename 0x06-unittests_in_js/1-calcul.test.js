@@ -116,6 +116,11 @@ describe('calculateNumber', function() {
       const val = calculateNumber('DIVIDE', 2, 3);
       assert.strictEqual(val, 2/3);
     });
+
+    it('should return the correct DIVISION when dividing two integer numbers', function() {
+      const val = calculateNumber('DIVIDE', -2, -3);
+      assert.strictEqual(val, 2/3);
+    });
         
     it('should return the correct DIVISION when dividing two integer numbers', function() {
       const val = calculateNumber('DIVIDE', 7, 0);

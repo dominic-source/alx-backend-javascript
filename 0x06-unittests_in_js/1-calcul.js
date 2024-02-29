@@ -4,8 +4,7 @@ module.exports = function calculateNumber(type, a, b) {
   if (type === 'SUM') return na + nb;
   if (type === 'SUBTRACT') return nb - na;
   if (type === 'DIVIDE') {
-    if (nb == 0) return 'Error';
+    if (nb === 0) return 'Error';
     return na / nb;
   }
 };
-  

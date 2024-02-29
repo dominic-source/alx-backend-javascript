@@ -54,34 +54,39 @@ describe('calculateNumber', function() {
   describe('# Calculate Subtraction', function() {
     it('should return the  correct SUBTRACT when subtracting two positive numbers', function() {
       const val = calculateNumber('SUBTRACT', 2, 5.5);
-      assert.strictEqual(val, 4);
+      assert.strictEqual(val, -4);
     });
 
     it('should return the the correct SUBTRACT when subtracting two negative decimal numbers', function() {
       const val = calculateNumber('SUBTRACT', -3.5, -2.1);
-      assert.strictEqual(val, 1);
+      assert.strictEqual(val, -1);
     });
         
     it('should return the correct SUBTRACT when subtracting a positive and a negative decimal numbers', function() {
       const val = calculateNumber('SUBTRACT', 5.1, -2.1);
-      assert.strictEqual(val, -7);
+      assert.strictEqual(val, 7);
     });
         
     it('should return the correct SUBTRACT when subtracting two decimal numbers', function() {
       const val = calculateNumber('SUBTRACT', 1.2, 3.5);
-      assert.strictEqual(val, 3);
+      assert.strictEqual(val, -3);
     });
 
     it('should return the correct SUBTRACT when subtracting two integer numbers', function() {
       const val = calculateNumber('SUBTRACT', -2, -3);
-      assert.strictEqual(val, -1);
+      assert.strictEqual(val, 1);
     });
  
     it('should return the correct SUBTRACT when subtracting two integer numbers', function() {
       const val = calculateNumber('SUBTRACT', 2, 3);
-      assert.strictEqual(val, 1);
+      assert.strictEqual(val, -1);
     });
-        
+    
+    it('should return the correct SUBTRACT when subtracting two integer numbers', function() {
+      const val = calculateNumber('SUBTRACT', 4.9, 2.7);
+      assert.strictEqual(val, 2);
+    });
+
     it('should return the correct SUBTRACT when subtracting two integer numbers', function() {
       const val = calculateNumber('SUBTRACT', 0, 0);
       assert.strictEqual(val, 0);
@@ -89,7 +94,7 @@ describe('calculateNumber', function() {
     
     it('should return the correct SUBTRACT when subtracting two integer numbers', function() {
         const val = calculateNumber('SUBTRACT', 0, 50);
-        assert.strictEqual(val, 50);
+        assert.strictEqual(val, -50);
     });
     it('should return the correct SUBTRACT when subtracting two infinit numbers', function() {
       const val = calculateNumber('SUBTRACT', Infinity, Infinity);
@@ -98,7 +103,7 @@ describe('calculateNumber', function() {
         
     it('should return the correct SUBTRACT when subtracting two large decimal numbers', function() {
       const val = calculateNumber('SUBTRACT', 12345.54, 5423.21);
-      assert.strictEqual(val, -6923);
+      assert.strictEqual(val, 6923);
     });
   });
 

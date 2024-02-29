@@ -4,14 +4,14 @@ const sinon = require('sinon');
 const Utils = require('./utils');
 
 describe('sendPaymentRequestToApi', function() {
-  const sandbox = sinon.createSandbox();
+  const spy = sinon.createSandbox();
   beforeEach(function() {
-    Utils.calculateNumber = sandbox.spy();
+    Utils.calculateNumber = spy.spy();
     sendPaymentRequestToApi(100, 20);
   });
 
   afterEach(function() {
-    sandbox.restore();
+    spy.restore();
   });
 
   it("validates the Utils module method", function() {

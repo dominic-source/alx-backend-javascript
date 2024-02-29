@@ -22,13 +22,24 @@ describe('calculateSum', function() {
     assert.strictEqual(val, 5);
   });
 
-  it('should return the correct sum when adding two integer dumbers', function() {
+  it('should return the correct sum when adding two integer numbers', function() {
     const val = calculateNumber(2, 3);
     assert.strictEqual(val, 5);
   });
 
-  it('should return the correct sum when adding two integer dumbers', function() {
+  it('should return the correct sum when adding two integer numbers', function() {
     const val = calculateNumber(0, 0);
     assert.strictEqual(val, 0);
   });
+
+  it('should return the correct sum when adding two infinit numbers', function() {
+    const val = calculateNumber(Infinity, Infinity);
+    assert.strictEqual(val, Infinity);
+  });
+
+  it('should return the correct sum when adding two large decimal numbers', function() {
+    const val = calculateNumber(12345.54, 5423.21);
+    assert.strictEqual(val, 17769);
+  });
+
 });

@@ -153,9 +153,19 @@ describe('calculateNumber', function() {
     });
 
     it('should return the correct DIVISION when dividing two large decimal numbers', function() {
-        const val = calculateNumber('DIVIDE', 12345.54, -5423.21);
-        assert.strictEqual(val, -12346/5423);
+      const val = calculateNumber('DIVIDE', 12345.54, -5423.21);
+      assert.strictEqual(val, -12346/5423);
     });
+
+    it('should return the correct DIVISION when dividing very small numbers', function() {
+      const val = calculateNumber('DIVIDE', 1e-20, 1e-20);
+      assert.strictEqual(val, 'Error');
+    });
+
+   it('should return the correct DIVISION when dividing numbers close to the limits of floating-point precision', function() {
+     const val = calculateNumber('DIVIDE', 1e-15, 1e-15);
+     assert.strictEqual(val, 'Error');
+   });
   });
 });
   

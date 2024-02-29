@@ -118,8 +118,13 @@ describe('calculateNumber', function() {
     });
         
     it('should return the correct DIVISION when dividing two integer numbers', function() {
-      const val = calculateNumber('DIVIDE', 1.7, 0);
+      const val = calculateNumber('DIVIDE', 7, 0);
       assert.strictEqual(val, 'Error');
+    });
+
+    it('should return the correct DIVISION when dividing two integer numbers', function() {
+        const val = calculateNumber('DIVIDE', 1.7, 0);
+        assert.strictEqual(val, 'Error');
     });
 
     it('should return the correct DIVISION when dividing two integer numbers', function() {

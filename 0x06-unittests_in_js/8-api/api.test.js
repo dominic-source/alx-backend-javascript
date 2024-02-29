@@ -29,4 +29,12 @@ describe('Index page', function() {
     })
   });
 
+  it('should have the correct method', function() {
+    request('http://localhost:7865/', (error, response, body) => {
+      if (!error) {
+        expect(response.method).to.equal('GET');
+      }
+    })
+  });
+
 });

@@ -26,4 +26,9 @@ describe('calculateSum', function() {
     const val = calculateNumber(2, 3);
     assert.strictEqual(val, 5);
   });
+
+  it('should return the correct sum when adding two integer dumbers', function() {
+    const val = calculateNumber(0, 0);
+    assert.strictEqual(val, 0);
+  });
 });

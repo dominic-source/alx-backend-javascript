@@ -4,21 +4,19 @@ const sinon = require('sinon');
 const Utils = require('./utils');
 
 describe('sendPaymentRequestToApi', function() {
-  const spy = sinon.createSandbox();
   beforeEach(function() {
-    Utils.calculateNumber = spy.spy();
-    sendPaymentRequestToApi(100, 20);
+    Utils.calculateNumber = sinon.spy();
   });
-
   afterEach(function() {
-    spy.restore();
+    sinon.restore()
   });
-
   it("validates the Utils module method", function() {
+    sendPaymentRequestToApi(100, 20);
     expect(Utils.calculateNumber.calledOnce).to.be.true;
   });
 
   it("validates the Utils module method is called with argument", function() {
+    sendPaymentRequestToApi(100, 20);
     expect(Utils.calculateNumber.firstCall.args).to.deep.equal(['SUM', 100, 20]);
   });
 });

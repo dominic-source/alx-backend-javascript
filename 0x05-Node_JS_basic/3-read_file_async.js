@@ -4,9 +4,9 @@ module.exports = function countStudents(path) {
   return new Promise((resolve, reject) => {
     readFile(path, (error, data) => {
       if (error) {
-        reject(new Error('Error: Cannot load the database'));
+        reject(new Error('Cannot load the database'));
       } else {
-        const results = data.toString().split('\n');
+        const results = data.toString().split('\r\n');
         const fields = {};
         let count = -1;
         let value = '';

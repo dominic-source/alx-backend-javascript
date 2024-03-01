@@ -12,9 +12,9 @@ function countStudents(path) {
       if (struct !== '') {
         count += 1;
         const info = struct.split(',');
-        try {
+        if (Object.prototype.hasOwnProperty.call(fields, info[3])) {
           fields[info[3]].push(info[0]);
-        } catch (err) {
+        } else {
           fields[info[3]] = [];
           fields[info[3]].push(info[0]);
         }

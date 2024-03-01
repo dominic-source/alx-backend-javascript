@@ -4,7 +4,7 @@ function countStudents(path) {
   try {
     const data = fs.readFileSync(path, 'utf-8');
 
-    const results = data.split('\r\n');
+    const results = data.split('\n');
 
     const fields = {};
     let count = -1;

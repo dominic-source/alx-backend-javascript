@@ -40,7 +40,7 @@ module.exports = function countStudents(path) {
     });
 
     rl.on('close', () => {
-      if (!errorOccurred){
+      if (!errorOccurred) {
         delete fields.field;
         let value = '';
         console.log(`Number of students: ${count}`);
@@ -53,5 +53,7 @@ module.exports = function countStudents(path) {
         resolve(value);
       }
     });
+  }).catch(() => {
+    throw new Error('Cannot load the database');
   });
 };

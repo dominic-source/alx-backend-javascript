@@ -15,7 +15,7 @@ app.get('/students', (req, res) => {
     res.send(`<pre>This is the list of our students\n${value}</pre>`);
   })
     .catch((err) => {
-      res.status(404).send(`<pre>This is the list of our students\n${err.message}</pre>`);
+      res.send(`This is the list of our students\n${err.message}`);
     });
 });
 

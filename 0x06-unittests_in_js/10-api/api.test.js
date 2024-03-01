@@ -1,5 +1,4 @@
 const expect = require('chai').expect;
-const sinon = require('sinon');
 const request = require('request');
 
 describe('Index page', function() {
@@ -68,10 +67,39 @@ describe('Index page', function() {
     });
   });
 
-  it('should have the correct status code when id is a number', function(done) {
+  it('should have the correct status code when id is not a number', function(done) {
     request('http://localhost:7865/cart/hello', (error, response, body) => {
       if (!error) {
         expect(response.statusCode).to.equal(404);
+        done();
+      }
+    });
+  });
+
+  it('should have the correct payload', function(done) {
+    request('http://localhost:7865/available_payments', (error, response, body) => {
+      if (!error) {
+        expect(JSON.parse(body)).to.deep.equal({
+          payment_methods: {
+            credit_cards: true,
+            paypal: false
+          }
+        });
+        done();
+      }
+    });
+  });
+
+  it('should have the correct login data', function(done) {
+    options = {
+      url: 'http://localhost:7865/login',
+      form: {"userName": "Betty"}, 
+      headers: {'Content-Type': 'application/json'}
+    };
+
+    request.post(options, (error, response, body) => {
+      if (!error) {
+        expect(body).to.equal('Welcome Betty');
         done();
       }
     });

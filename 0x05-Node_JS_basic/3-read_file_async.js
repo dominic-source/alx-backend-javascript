@@ -7,8 +7,7 @@ module.exports = async function countStudents(path) {
     try {
       stream = fs.createReadStream(path, 'utf-8');
     } catch (err) {
-      // reject(new Error('Cannot load the database'));
-      reject();
+      reject(new Error('Cannot load the database'));
       throw new Error('Cannot load the database');
     }
     const rl = readline.createInterface({
@@ -23,31 +22,31 @@ module.exports = async function countStudents(path) {
       if (struct !== '') {
         count += 1;
         const info = struct.split(',');
-        try {
+        if (Object.prototype.hasOwnProperty.call(fields, info[3])) {
           fields[info[3]].push(info[0]);
-        } catch (err) {
+        } else {
           fields[info[3]] = [];
           fields[info[3]].push(info[0]);
         }
       }
     });
 
-    rl.on('error', async () => {
-      // reject(new Error('Cannot load the database'));
+    rl.on('error', () => {
+      reject(new Error('Cannot load the database'));
       throw new Error('Cannot load the database');
     });
 
-    rl.on('close', async () => {
+    rl.on('close', () => {
       delete fields.field;
-      // let value = '';
+      let value = '';
       console.log(`Number of students: ${count}`);
-      // value += `Number of students: ${count}\n`;
+      value += `Number of students: ${count}\n`;
       const keys = Object.keys(fields);
       for (const dat of keys) {
-        // value += `Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}\n`;
+        value += `Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}\n`;
         console.log(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}`);
       }
-      resolve();
+      resolve(value);
     });
   });
 };

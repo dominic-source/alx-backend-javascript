@@ -26,7 +26,7 @@ class StudentsController {
 
       readDatabase(file).then((val) => {
         const info = `List: ${val[mj].join(', ')}\n`;
-        response.status(200).send(`<pre>${info}</pre>`);
+        response.status(200).send(`${info}`);
       }).catch(() => {
         response.status(500).send('Cannot load the database');
       });

@@ -6,7 +6,7 @@ module.exports = function countStudents(path) {
       if (error) {
         reject(new Error('Error: Cannot load the database'));
       } else {
-        const results = data.split('\n');
+        const results = data.toString().split('\r\n');
         const fields = {};
         let count = -1;
         let value = '';

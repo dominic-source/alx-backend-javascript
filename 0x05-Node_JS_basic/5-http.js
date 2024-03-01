@@ -7,20 +7,21 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   }
   if (req.url === '/students') {
-    let file = process.argv[2];
-    if (file == null) file = '';
+    let [file] = process.argv.slice(2);
+    file = file || 'nofile';
+
     countStudents(file).then((value) => {
       res.write('This is the list of our students\n');
       res.end(value);
     })
       .catch((err) => {
-        res.end(err);
-        console.log(err);
+        res.write('This is the list of our students\n');
+        res.end(err.toString());
       });
   }
 });
 
 app.listen(1245, 'localhost', () => {
-  console.log('server is running...')
+  console.log('server is running...');
 });
 module.exports = app;

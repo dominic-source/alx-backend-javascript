@@ -7,10 +7,11 @@ module.exports = function countStudents(path) {
     try {
       stream = fs.createReadStream(path, 'utf-8');
     } catch (err) {
-      reject(new Error('Error: Cannot load the database'));
+      reject(new Error('Cannot load the database'));
     }
     const rl = readline.createInterface({
       input: stream,
+      crlfDelay: Infinity,
     });
 
     let count = -1;
@@ -31,7 +32,7 @@ module.exports = function countStudents(path) {
     });
 
     rl.on('error', () => {
-      reject(new Error('Error: Cannot load the database'));
+      reject(new Error('Cannot load the database'));
     });
 
     rl.on('close', () => {

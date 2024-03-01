@@ -4,10 +4,12 @@ const readline = require('readline');
 module.exports = function countStudents(path) {
   return new Promise((resolve, reject) => {
     let stream = null;
+    let errorOccurred = false;
     try {
       stream = fs.createReadStream(path, 'utf-8');
     } catch (err) {
       reject(Error('Cannot load the database'));
+      return;
     }
     const rl = readline.createInterface({
       input: stream,
@@ -32,20 +34,24 @@ module.exports = function countStudents(path) {
     });
 
     rl.on('error', () => {
+      errorOccurred = true;
       reject(Error('Cannot load the database'));
+      rl.close();
     });
 
     rl.on('close', () => {
-      delete fields.field;
-      let value = '';
-      console.log(`Number of students: ${count}`);
-      value += `Number of students: ${count}\n`;
-      const keys = Object.keys(fields);
-      for (const dat of keys) {
-        value += `Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}\n`;
-        console.log(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}`);
+      if (!errorOccurred){
+        delete fields.field;
+        let value = '';
+        console.log(`Number of students: ${count}`);
+        value += `Number of students: ${count}\n`;
+        const keys = Object.keys(fields);
+        for (const dat of keys) {
+          value += `Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}\n`;
+          console.log(`Number of students in ${dat}: ${fields[dat].length}. List: ${fields[dat].join(', ')}`);
+        }
+        resolve(value);
       }
-      resolve(value);
     });
   });
 };

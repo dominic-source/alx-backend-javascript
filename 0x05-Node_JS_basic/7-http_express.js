@@ -9,13 +9,13 @@ app.get('/', (req, res) => {
 
 app.get('/students', (req, res) => {
   let [file] = process.argv.slice(2);
-  file = file || 'nofile';
+  file = file || '';
 
   countStudents(file).then((value) => {
     res.send(`<pre>This is the list of our students\n${value}</pre>`);
   })
     .catch((err) => {
-      res.send(`<pre>This is the list of our students\n${err.message}</pre>`);
+      res.status(400).send(`<pre>This is the list of our students\n${err.message}</pre>`);
     });
 });
 

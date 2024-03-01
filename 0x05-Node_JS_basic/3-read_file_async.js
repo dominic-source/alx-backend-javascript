@@ -1,12 +1,12 @@
-const fs = require('fs');
+const { readFile } = require('fs');
 
 module.exports = function countStudents(path) {
   return new Promise((resolve, reject) => {
-    fs.readFile(path, (error, data) => {
+    readFile(path, (error, data) => {
       if (error) {
         reject(new Error('Error: Cannot load the database'));
       } else {
-        const results = data.toString().split('\r\n');
+        const results = data.toString().split('\n');
         const fields = {};
         let count = -1;
         let value = '';
